@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>EAD</class>
+ <widget class="QWidget" name="EAD">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>482</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>EncryptAndDecryption</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QRadioButton::indicator::checked {
+	border: 3px solid; 
+	border-color: rgb(0,116,188);
+	border-radius: 6px;
+	background-color: white; 
+	width: 7px; 
+	height: 7px; 
+}
+
+QRadioButton::indicator::unchecked{ 
+	border: 1px solid; 
+	border-color: rgb(132,132,132);
+	border-radius: 5px;
+	background-color: rgb(0,116,188);
+	width: 11px; 
+	height: 11px; 
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="4" column="0" colspan="3">
+    <widget class="QGroupBox" name="create_box">
+     <property name="title">
+      <string>鍵生成</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QRadioButton" name="create_low">
+        <property name="text">
+         <string>低(1024)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="create_normal">
+        <property name="text">
+         <string>標準(2048)</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="create_high">
+        <property name="text">
+         <string>高(3072)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="create_higher">
+        <property name="text">
+         <string>実用範囲の最高(4096)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="create_high5">
+        <property name="text">
+         <string>最高5(5120)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="create_high6">
+        <property name="text">
+         <string>最高6(6144)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="create_name">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>鍵セットの名前</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="create_enter">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>生成</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="5" column="0" rowspan="3" colspan="2">
+    <widget class="QGroupBox" name="set_box">
+     <property name="title">
+      <string>設定</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="2" column="3">
+       <widget class="QPushButton" name="set_dialog_public">
+        <property name="text">
+         <string>参照</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QPushButton" name="set_dialog_private">
+        <property name="text">
+         <string>参照</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="set_path_public_l">
+        <property name="text">
+         <string>公開鍵</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="3">
+       <widget class="QPushButton" name="set_dialog_folder">
+        <property name="text">
+         <string>参照</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="set_path_private_l">
+        <property name="text">
+         <string>秘密鍵</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QLineEdit" name="set_path_folder">
+        <property name="placeholderText">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLineEdit" name="set_path_public">
+        <property name="placeholderText">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="set_path_folder_l">
+        <property name="text">
+         <string>出力フォルダ</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLineEdit" name="set_path_private">
+        <property name="placeholderText">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QPushButton" name="other_clear">
+     <property name="text">
+      <string>Clear</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QLineEdit" name="output">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="placeholderText">
+      <string>出力(文字列)</string>
+     </property>
+     <property name="clearButtonEnabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="other_copy">
+     <property name="text">
+      <string>出力をクリップボードにコピー</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QGroupBox" name="de_box">
+     <property name="styleSheet">
+      <string notr="true">QGroupBox {
+border: 3px solid #5A5A5A;
+border-radius: 5px;
+margin-top: 10px;
+}
+QGroupBox::title {
+subcontrol-origin: margin;
+subcontrol-position: top center;
+padding: 0 3px;
+margin-bottom: 5px;
+color: aqua;
+}</string>
+     </property>
+     <property name="title">
+      <string>復号</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="2" colspan="2">
+       <widget class="QLineEdit" name="de_input">
+        <property name="placeholderText">
+         <string>入力(文字列)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" colspan="3">
+       <widget class="QPushButton" name="de_convert">
+        <property name="text">
+         <string>変換</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QPushButton" name="de_dialog">
+        <property name="text">
+         <string>参照</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QRadioButton" name="de_enable_input">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLineEdit" name="de_path">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="placeholderText">
+         <string>入力(ファイル)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QRadioButton" name="de_enable_path">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QGroupBox" name="en_box">
+     <property name="styleSheet">
+      <string notr="true">QGroupBox {
+border: 3px solid #5A5A5A;
+border-radius: 5px;
+margin-top: 10px;
+}
+QGroupBox::title {
+subcontrol-origin: margin;
+subcontrol-position: top center;
+padding: 0 3px;
+margin-bottom: 5px;
+color: aqua;
+}</string>
+     </property>
+     <property name="title">
+      <string>暗号化</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="1" colspan="2">
+       <widget class="QLineEdit" name="en_input">
+        <property name="placeholderText">
+         <string>入力(文字列)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QRadioButton" name="en_enable_path">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QRadioButton" name="en_enable_input">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="3">
+       <widget class="QPushButton" name="en_convert">
+        <property name="text">
+         <string>変換</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="en_path">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="placeholderText">
+         <string>入力(ファイル)</string>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QPushButton" name="en_dialog">
+        <property name="text">
+         <string>参照</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="9" column="0" rowspan="3" colspan="2">
+    <widget class="QGroupBox" name="write_box">
+     <property name="title">
+      <string>鍵書き込み</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_7">
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="write_path">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="placeholderText">
+         <string>出力ファイル</string>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="write_dialog">
+        <property name="text">
+         <string>参照</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="3">
+       <widget class="QLineEdit" name="write_input">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="placeholderText">
+         <string>入力</string>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QPushButton" name="write_enter">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>書き込み</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QRadioButton" name="write_public">
+        <property name="text">
+         <string>公開鍵</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QRadioButton" name="write_private">
+        <property name="text">
+         <string>秘密鍵</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="5" column="2">
+    <widget class="QGroupBox" name="qr_box">
+     <property name="title">
+      <string>鍵QRコード</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_6">
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="qr_input">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="placeholderText">
+         <string>入力(文字列)</string>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="qr_enter">
+        <property name="text">
+         <string>生成</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="9" column="2" rowspan="3">
+    <widget class="QGroupBox" name="read_box">
+     <property name="title">
+      <string>鍵読み込み</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_8">
+      <item row="0" column="0">
+       <widget class="QLineEdit" name="read_path">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="placeholderText">
+         <string>入力ファイル</string>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QPushButton" name="read_enter">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>読み込み</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="4">
+       <widget class="QLineEdit" name="read_output">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="placeholderText">
+         <string>出力</string>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="read_dialog">
+        <property name="text">
+         <string>参照</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="6" column="2">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Policy::Minimum</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>488</width>
+       <height>0</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="7" column="2">
+    <widget class="QPushButton" name="other_explanation">
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: orange</string>
+     </property>
+     <property name="text">
+      <string>説明書</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="0">
+    <widget class="QLineEdit" name="log">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="placeholderText">
+      <string>Log</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="1" colspan="2">
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:red;</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;EncryptAndDecryption(EAD) ver6.0 | 文字:RSA ファイル:RSA+AES | Create by yy981 | 2024/11&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>en_enable_input</tabstop>
+  <tabstop>en_enable_path</tabstop>
+  <tabstop>en_input</tabstop>
+  <tabstop>en_path</tabstop>
+  <tabstop>en_dialog</tabstop>
+  <tabstop>en_convert</tabstop>
+  <tabstop>de_enable_input</tabstop>
+  <tabstop>de_enable_path</tabstop>
+  <tabstop>de_input</tabstop>
+  <tabstop>de_path</tabstop>
+  <tabstop>de_dialog</tabstop>
+  <tabstop>de_convert</tabstop>
+  <tabstop>other_copy</tabstop>
+  <tabstop>other_clear</tabstop>
+  <tabstop>output</tabstop>
+  <tabstop>create_low</tabstop>
+  <tabstop>create_normal</tabstop>
+  <tabstop>create_high</tabstop>
+  <tabstop>create_higher</tabstop>
+  <tabstop>create_high5</tabstop>
+  <tabstop>create_high6</tabstop>
+  <tabstop>create_name</tabstop>
+  <tabstop>create_enter</tabstop>
+  <tabstop>set_path_private</tabstop>
+  <tabstop>set_dialog_private</tabstop>
+  <tabstop>set_path_public</tabstop>
+  <tabstop>set_dialog_public</tabstop>
+  <tabstop>set_path_folder</tabstop>
+  <tabstop>set_dialog_folder</tabstop>
+  <tabstop>qr_input</tabstop>
+  <tabstop>qr_enter</tabstop>
+  <tabstop>other_explanation</tabstop>
+  <tabstop>write_input</tabstop>
+  <tabstop>write_path</tabstop>
+  <tabstop>write_dialog</tabstop>
+  <tabstop>write_enter</tabstop>
+  <tabstop>write_public</tabstop>
+  <tabstop>write_private</tabstop>
+  <tabstop>read_path</tabstop>
+  <tabstop>read_dialog</tabstop>
+  <tabstop>read_enter</tabstop>
+  <tabstop>read_output</tabstop>
+  <tabstop>log</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>en_input</sender>
+   <signal>returnPressed()</signal>
+   <receiver>en_convert</receiver>
+   <slot>animateClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>87</x>
+     <y>40</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>136</x>
+     <y>105</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>de_input</sender>
+   <signal>returnPressed()</signal>
+   <receiver>de_convert</receiver>
+   <slot>animateClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>837</x>
+     <y>56</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>816</x>
+     <y>116</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>qr_input</sender>
+   <signal>returnPressed()</signal>
+   <receiver>qr_enter</receiver>
+   <slot>animateClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>605</x>
+     <y>269</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>980</x>
+     <y>278</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>write_input</sender>
+   <signal>returnPressed()</signal>
+   <receiver>write_enter</receiver>
+   <slot>animateClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>425</x>
+     <y>404</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>425</x>
+     <y>434</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
